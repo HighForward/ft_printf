@@ -6,7 +6,7 @@
 /*   By: mbrignol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 15:08:59 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/11/20 15:57:16 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/11/23 15:23:52 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
+char			*ft_putnbr_base(int nbr);
+void			ft_putstr(char *str);
 char			*ft_strnew(int size);
 char			*ft_strncat(char *dest, char *src, unsigned int nb);
 int				ft_atoi(const char *nptr);

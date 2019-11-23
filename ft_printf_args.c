@@ -6,7 +6,7 @@
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 15:32:12 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/11/21 16:13:01 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/11/23 14:33:50 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,26 @@ int	get_string_arg(va_list va, t_flag *info)
 
 int	get_int_arg(va_list va, t_flag *info)
 {
-	info->nb = va_arg(va, int);
+	char *nbr;
+	int number;
+
+	number = va_arg(va, int);
+	nbr = ft_itoa(number);
+	info->str = nbr;
+	free(nbr);
 	return (1);
 }
 
 int	get_char_arg(va_list va, t_flag *info)
 {
-	info->c = (char)va_arg(va, int);
+	char c;
+	char *s;
+
+	s = ft_strnew(1);
+	s[0] = (char)va_arg(va, int);
+
+	info->str = s;
+	free(s);
 	return (1);
 }
 

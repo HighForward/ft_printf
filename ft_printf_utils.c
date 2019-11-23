@@ -6,7 +6,7 @@
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 13:25:31 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/11/21 16:33:19 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/11/23 18:40:53 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -25,9 +25,9 @@ int get_flag_value(char *s, int *i)
 
 	size = 0;
 	nb = 0;
-	if ((s[size] >= '1' && s[size] <= '9'))
+	if ((s[size] >= '0' && s[size] <= '9'))
 	{
-		while ((s[size] && (s[size] >= '1' && s[size] <= '9')))
+		while ((s[size] && (s[size] >= '0' && s[size] <= '9')))
 		{
 			nb = nb * 10 + (s[size] - 48);
 			size++;
@@ -50,11 +50,8 @@ int get_flag(char c)
 int	check_arg(char *s, t_flag *info)
 {
 	int		i;
-	int 	size;
 
-	initialize_struct(info);
 	i = 0;
-	size = 0;
 	while (s[i])
 	{
 		if (s[i] == '%')
