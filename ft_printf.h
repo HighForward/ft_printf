@@ -6,7 +6,7 @@
 /*   By: mbrignol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 14:48:24 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/11/23 17:54:15 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/11/23 20:02:07 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int		get_int_arg(va_list va, t_flag *info);
 int 	get_len_of_args(t_flag *info);
 int		manage_str(t_flag *info);
 
+int		manage_no_flag(t_flag *info);
+int		manage_no_flag_next(t_flag *info);
 int		manage_hypen(t_flag *info);
 int		manage_hypen_next(t_flag *info);
 int		manage_hypen_next_string(t_flag *info);

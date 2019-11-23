@@ -6,7 +6,7 @@
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 13:25:31 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/11/23 18:40:53 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/11/23 19:54:02 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -35,8 +35,6 @@ int get_flag_value(char *s, int *i)
 		}
 		return (nb);
 	}
-	else
-
 	return (0);
 }
 
@@ -61,8 +59,8 @@ int	check_arg(char *s, t_flag *info)
 			{
 				info->flag = s[i];
 				i++;
-				info->flag_value = get_flag_value(&s[i], &i);
 			}
+			info->flag_value = get_flag_value(&s[i], &i);
 			if ((get_flag(s[i])) != 0)
 			{
 				info->flag_2 = s[i];
