@@ -6,14 +6,14 @@
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 13:25:31 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/11/24 04:08:59 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/11/24 05:36:33 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
 
 int check_letter(char c)
 {
-	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X')
+	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X' || c == '%')
 		return (1);
 	return (0);
 }

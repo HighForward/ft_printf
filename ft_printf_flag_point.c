@@ -6,7 +6,7 @@
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:29:40 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/11/23 17:05:41 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/11/24 06:34:32 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@ int		manage_point(t_flag *info)
 	int i;
 	int size;
 	int j;
-
 	size = ft_strlen(info->str);
 	i = info->flag_value - size;
 	j = 0;
-	if (info->letter == 'd')
+	if (info->letter == 'd' || info->letter == 'x' || info->letter == 'X')
 	{
 		while (i > 0)
 		{

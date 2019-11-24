@@ -6,7 +6,7 @@
 /*   By: mbrignol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 14:50:15 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/11/24 05:20:48 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/11/24 07:21:55 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,12 @@ int main(void)
 	ft_printf("\n%-*.d<FAKE", 5, 987987987);*/
 	//printf("bite%*.dcbite%s%d%c%c%%\n", 80, 1000, "bite de ", 10, 'c', 'm');
 	//ft_printf("bite%*.dcbite%s%d%c%c%%\n", 80, 1000, "bite de ", 10, 'c', 'm');
-
-	printf("%05%");
+	//ft_printf("%08.*d\n", "bitw");
+	//printf("%08.*d", "bitw");
+	//ft_printf("%.8x\n", 45);
+	//printf("%p", slt);
+	/*ft_printf("%%%s%c%s%%\n", "bite", 'c', "whala");
+	printf("%%%s%c%s%%", "bite", 'c', "whala");*/
+	/*ft_printf("%.9d", 9781);
+	printf("\n%.9d", 9781);*/
 }

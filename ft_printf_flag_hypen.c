@@ -6,7 +6,7 @@
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 16:04:07 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/11/24 04:41:49 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/11/24 06:04:32 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int		manage_hypen_next(t_flag *info)
 	{
 		ft_putchar('0');
 		i++;
+		ft_putstr(info->str);
 	}
-	ft_putstr(info->str);
 	if (info->flag_value_2 > info->flag_value)
 	{
 		i = info->flag_value_2;
@@ -36,7 +36,7 @@ int		manage_hypen_next(t_flag *info)
 	}
 	else if (info->flag_value > info->flag_value_2)
 	{
-		i = info->flag_value - ft_strlen(info->str);
+		i = info->flag_value - info->flag_value_2;
 		while (i > 0)
 		{
 			ft_putchar(' ');
@@ -72,9 +72,9 @@ int		manage_hypen(t_flag *info)
 	int size;
 	int len;
 
-	if (info->flag_2 == '.' && info->letter != 's')
+	if (info->flag_2 == '.' && info->letter != 's' && info->letter != '%')
 		return (manage_hypen_next(info));
-	if (info->flag_2 == '.' && info->letter == 's')
+	if (info->flag_2 == '.' && (info->letter == 's' || info->letter == '%'))
 		return (manage_hypen_next_string(info));
 	size = ft_strlen(info->str);
 	ft_putstr(info->str);
