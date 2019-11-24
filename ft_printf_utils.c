@@ -6,7 +6,7 @@
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 13:25:31 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/11/23 19:54:02 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/11/24 04:08:59 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -40,39 +40,43 @@ int get_flag_value(char *s, int *i)
 
 int get_flag(char c)
 {
-	if (c == '.' || c == '-' || c == '*' || c == '0')
+	if (c == '.' || c == '-' || c == '0')
 		return (1);
 	return (0);
 }
 
-int	check_arg(char *s, t_flag *info)
+int	check_arg(char *s, t_flag *info, va_list va)
 {
 	int		i;
 
 	i = 0;
-	while (s[i])
+	if (s[i] == '%')
 	{
-		if (s[i] == '%')
-		{
-			i++;
-			if ((get_flag(s[i])) != 0)
-			{
-				info->flag = s[i];
-				i++;
-			}
-			info->flag_value = get_flag_value(&s[i], &i);
-			if ((get_flag(s[i])) != 0)
-			{
-				info->flag_2 = s[i];
-				i++;
-				info->flag_value_2 = get_flag_value(&s[i], &i);
-			}
-			if ((check_letter(s[i])) != 0)
-				info->letter = s[i];
-			else
-				return (0);
-		}
 		i++;
+		if ((get_flag(s[i])) != 0)
+			info->flag = s[i++];
+		if (s[i] == '*')
+		{
+			info->flag_value = va_arg(va, int);
+			i++;
+		}
+		else
+			info->flag_value = get_flag_value(&s[i], &i);
+		if ((get_flag(s[i])) != 0)
+			info->flag_2 = s[i++];
+		if (s[i] == '*')
+		{
+			info->flag_value_2 = va_arg(va, int);
+			i++;
+		}
+		else
+			info->flag_value_2 = get_flag_value(&s[i], &i);
+		if ((check_letter(s[i])) != 0)
+			info->letter = s[i];
+		else
+			return (0);
+		return (i);
 	}
-	return (1);
+	else
+		return (0);
 }

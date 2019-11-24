@@ -6,7 +6,7 @@
 /*   By: mbrignol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 14:48:24 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/11/23 20:02:07 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/11/24 01:57:46 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,12 @@ typedef struct	s_flag
 # include <unistd.h>
 # include <stdio.h>
 
+int ft_printf(const char *s, ...);
+
 int check_letter(char c);
 int get_flag_value(char *s, int *i);
 int get_flag(char c);
-int	check_arg(char *s, t_flag *info);
+int	check_arg(char *s, t_flag *info, va_list va);
 
 void initialize_struct(t_flag *init);
 

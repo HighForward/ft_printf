@@ -6,7 +6,7 @@
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 16:37:01 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/11/23 17:01:43 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/11/24 04:05:39 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int		manage_str(t_flag *info)
 {
 	if (info->flag == '-')
-		manage_hypen(info);
+		return (manage_hypen(info));
 	else if (info->flag == '0')
-		manage_zero(info);
+		return (manage_zero(info));
 	else if (info->flag == '.')
-		manage_point(info);
+		return (manage_point(info));
 	else if (info->flag == 0 && info->flag_value != 0)
-		manage_no_flag(info);
+		return (manage_no_flag(info));
 	else
 		ft_putstr(info->str);
 	return (1);

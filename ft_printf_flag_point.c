@@ -6,25 +6,11 @@
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:29:40 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/11/23 16:54:48 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/11/23 17:05:41 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int static is_number(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] < 48 || str[i] > 57)
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 int		manage_point(t_flag *info)
 {

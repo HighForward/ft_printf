@@ -1,7 +1,15 @@
 NAME		=	a.out
 
 SRCS		=	ft_printf.c \
-                libft.a
+                libft.a     \
+                ft_printf_struct.c \
+                ft_printf_utils.c   \
+                ft_printf_args.c    \
+                ft_printf_manage.c    \
+                ft_printf_flag_hypen.c \
+                ft_printf_flag_zero.c   \
+                ft_printf_flag_point.c  \
+                ft_printf_no_flag.c     \
 
 OBJS		=	${SRCS:.c=.o}
 

@@ -6,7 +6,7 @@
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 16:04:07 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/11/23 19:09:01 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/11/24 04:41:49 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,25 @@ int		manage_hypen_next(t_flag *info)
 		i++;
 	}
 	ft_putstr(info->str);
-	i = info->flag_value_2;
-	while (i < info->flag_value)
+	if (info->flag_value_2 > info->flag_value)
 	{
-		ft_putchar(' ');
-		i++;
+		i = info->flag_value_2;
+		while (i < info->flag_value)
+		{
+			ft_putchar(' ');
+			i++;
+		}
 	}
-	return (1);
+	else if (info->flag_value > info->flag_value_2)
+	{
+		i = info->flag_value - ft_strlen(info->str);
+		while (i > 0)
+		{
+			ft_putchar(' ');
+			i--;
+		}
+	}
+		return (1);
 }
 
 int		manage_hypen_next_string(t_flag *info)
@@ -41,7 +53,7 @@ int		manage_hypen_next_string(t_flag *info)
 
 	size = 0;
 	i = 0;
-	while (i < info->flag_value_2 && i < ft_strlen(info->str))
+	while (i < info->flag_value_2 && i < (int)ft_strlen(info->str))
 	{
 		ft_putchar(info->str[i]);
 		i++;

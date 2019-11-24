@@ -6,7 +6,7 @@
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 15:32:12 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/11/23 14:33:50 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/11/24 00:54:50 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	get_int_arg(va_list va, t_flag *info)
 
 int	get_char_arg(va_list va, t_flag *info)
 {
-	char c;
 	char *s;
 
 	s = ft_strnew(1);
