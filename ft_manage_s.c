@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_result.c                                 :+:      :+:    :+:   */
+/*   ft_manage_s.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/21 16:37:01 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/11/28 14:20:33 by mbrignol         ###   ########.fr       */
+/*   Created: 2019/11/28 14:27:19 by mbrignol          #+#    #+#             */
+/*   Updated: 2019/11/28 16:28:36 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
 
-int		manage_str(t_flag *info)
+int		manage_s_blank(t_flag *info)
 {
-	if (info->letter == 'd' || info->letter == 'i' || info->letter == 'u')
-		return (manage_i_d(info));
-	else if (info->letter == 'c')
-		return (manage_c(info));
-	else if (info->letter == 's')
-		return (manage_s(info));
-	/*else if (info->flag == 0 && info->flag_value != 0)
-		return (manage_no_flag(info));*/
-	else
-		ft_putstr(info->str);
-	return (1);
+	int i;
+
+	//i = info->flag_value > ft_strlen(info->str) ? info->flag_value - ft_strlen(info->str)
+	return (0);
+}
+
+int		manage_s(t_flag *info)
+{
+	if (info->flag == 0)
+		return (manage_s_blank(info));
+	printf("bite");
+	return (0);
 }

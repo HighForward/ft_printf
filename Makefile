@@ -1,39 +1,60 @@
-NAME		=	a.out
 
-SRCS		=	ft_printf.c             \
-                libft.a                 \
-                ft_printf_struct.c      \
-                ft_printf_utils.c       \
-                ft_printf_args.c        \
-                ft_printf_manage.c      \
-                ft_printf_flag_hypen.c  \
-                ft_printf_flag_zero.c   \
-                ft_printf_flag_point.c  \
-                ft_printf_no_flag.c     \
-                ft_printf_hexa.c        \
+SRCSC		= 	libft/ft_atoi.c\
+                libft/ft_putchar.c\
+                libft/ft_itoa.c\
+				libft/ft_bzero.c\
+				libft/ft_isdigit.c\
+				libft/ft_strchr.c\
+				libft/ft_strlen.c\
+				srcs/parsing/ft_printf_args.c\
+				srcs/parsing/ft_printf_flags.c\
+				srcs/parsing/ft_printf_struct.c\
+				srcs/fonctions/ft_printf_hexa.c\
+				ft_manage_id.c\
+				ft_manage_c.c\
+				ft_manage_s.c\
+				ft_printf.c\
+				ft_printf_manage.c\
+				libft/ft_strdup.c
+SRCSH		= includes/ft_printf.h
+OBJS		= $(SRCSC:%.c=%.o)
+NAME		= libftprintf.a
+CC			= gcc
+AR			= ar rc
+RM			= rm -f
+CFLAGS		= -Wall -Wextra -Werror
 
-OBJS		=	${SRCS:.c=.o}
+.c.o: ${OBJS}
+	@${CC} -c $< -o ${<:.c=.o}
 
-FLAGS		=	-Wall -Wextra -Werror -g3 -Iincludes
+$(NAME):	${OBJS}
+			@echo "\033[1;32m"
+			@echo "┌─┐┬ ┬┌─┐┌─┐┌─┐┌─┐┌─┐"
+			@echo "└─┐│ ││  │  ├┤ └─┐└─┐"
+			@echo "└─┘└─┘└─┘└─┘└─┘└─┘└─┘"
+			@echo "libftprintf.a generated successfully.\033[0;0m"
+			@${AR} ${NAME} ${OBJS} ${SRCSH}
 
-CC			=	gcc
-
-RM			=	rm -f
-
-.c.o:
-				$(CC) $(FLAGS) -c $< -o ${<:.c=.o}
-
-$(NAME): ${OBJS}
-				ar rcs $(NAME) ${OBJS}
-
-all: $(NAME)
+all:		${NAME}
 
 clean:
-				${RM} ${OBJS}
+			@echo "Deleting .o files.."
+			@${RM} ${OBJS}
 
-fclean: clean
-				${RM} $(NAME)
+fclean:		clean
+			@echo "Deleting binary files.."
+			@${RM} ${NAME}
 
-re:	fclean all
+re:			fclean all
 
-.PHONY: all clean fclean re
+test-a:		all
+			@${CC} ${NAME} ../testers/main.c -o printf
+			@make clean
+			@./printf a
+
+test:		all
+			${CC} ${NAME} ${LIBFT} ../testers/main.c -o printf
+			@make clean
+			@./printf
+
+.PHONY:		all clean fclean re
