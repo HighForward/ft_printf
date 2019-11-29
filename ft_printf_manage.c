@@ -6,7 +6,7 @@
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 16:37:01 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/11/28 14:20:33 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/11/29 20:53:06 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		manage_str(t_flag *info)
 {
-	if (info->letter == 'd' || info->letter == 'i' || info->letter == 'u')
+	if (info->letter == 'd' || info->letter == 'i')
 		return (manage_i_d(info));
 	else if (info->letter == 'c')
 		return (manage_c(info));

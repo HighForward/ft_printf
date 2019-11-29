@@ -3,19 +3,23 @@ SRCSC		= 	libft/ft_atoi.c\
                 libft/ft_putchar.c\
                 libft/ft_itoa.c\
 				libft/ft_bzero.c\
-				libft/ft_isdigit.c\
-				libft/ft_strchr.c\
+				libft/ft_strnew.c\
+                libft/ft_putstr.c\
 				libft/ft_strlen.c\
 				srcs/parsing/ft_printf_args.c\
 				srcs/parsing/ft_printf_flags.c\
 				srcs/parsing/ft_printf_struct.c\
 				srcs/fonctions/ft_printf_hexa.c\
-				ft_manage_id.c\
-				ft_manage_c.c\
+				srcs/fonctions/ft_printf_utils.c\
+				srcs/manage_id/ft_manage_id.c\
+				srcs/manage_id/id_fct_zero_point.c\
+				srcs/manage_id/id_fct_blank.c\
+				srcs/manage_id/id_fct_tiret.c\
+				srcs/manage_c/ft_manage_c.c\
 				ft_manage_s.c\
 				ft_printf.c\
 				ft_printf_manage.c\
-				libft/ft_strdup.c
+
 SRCSH		= includes/ft_printf.h
 OBJS		= $(SRCSC:%.c=%.o)
 NAME		= libftprintf.a
