@@ -6,55 +6,37 @@
 /*   By: mbrignol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 14:50:15 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/11/29 21:25:04 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/12/01 04:15:20 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
 
-int ft_printf(const char *s, ...)
+int		ft_printf(const char *s, ...)
 {
-	va_list va;
-	t_flag info;
-	char *str;
-	int i;
-	int count;
-	int ret;
-	int uep;
+	va_list	va;
+	t_flag	info;
+	t_start start;
 
-	uep = 0;
-	ret = 0;
-	str = (char*)s;
 	va_start(va, s);
-	i = 0;
-
-	while (str[i])
+	initialize_start(&start, (char*)s);
+	while (start.str[start.i])
 	{
-		if (str[i] == '%')
+		if (start.str[start.i] == '%')
 		{
-			initialize_struct(&info);
-			i+=1;
-			count = check_arg(&str[i], &info, va);
+			initialize_struct(&info, &start.i);
+			start.count = check_arg(&start.str[start.i], &info, va);
+			start.i += start.count;
 			get_arg_type(va, &info);
-			ret = manage_str(&info);
-			uep = uep + ret;
-			i += count;
-			/*if (info.letter == 'i' || info.letter == 'd' || info.letter == 'c' || info.letter == '%')
-				free(info.str);*/
+			start.count = manage_str(&info);
+			start.ret += start.count;
 		}
 		else
 		{
-			ft_putchar(s[i++]);
-			uep++;
+			ft_putchar(start.str[start.i++]);
+			start.ret++;
 		}
 	}
 	va_end(va);
-	return (uep);
+	return (start.ret);
 }
-/*printf("\n---< FLAGS >---\n");
-printf("FLAG 1  > %c\n", info.flag);
-printf("VALUE 1 > %d\n", info.flag_value);
-printf("FLAG 2  > %c\n", info.flag_2);
-printf("VALUE 2 > %d\n", info.flag_value_2);
-printf("CONVERT > %c\n", info.letter);
-printf("<--------------\n");*/

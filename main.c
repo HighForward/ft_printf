@@ -8,9 +8,12 @@ int main(void)
 	int size;
 	int a, b;
 
-	a = ft_printf("%-22.18u?", 78789);
+	char *xd;
+
+	xd = "FJDHHJFDHJF";
+	a = ft_printf("ccc%%%p?ccc", &xd);
 	printf("\n");
-	b = printf("%-22.18u?", 78789);
+	b = printf("ccc%%%p?ccc", &xd);
 	if (a != b)
 		printf("\ntu \033[1;31m[KO]\033[0;0m mon gars\nfake = %d\nreal = %d\n", a, b);
 	else
