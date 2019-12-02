@@ -6,7 +6,7 @@
 /*   By: mbrignol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 15:08:59 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/11/23 15:23:52 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/12/02 18:06:45 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char			*ft_strncat(char *dest, char *src, unsigned int nb);
 int				ft_atoi(const char *nptr);
 void			ft_putchar(char c);
 void			ft_putnbr(int nb);
-size_t			ft_strlen(const char *str);
+int				ft_strlen(const char *str);
 void			*ft_memset(void *s, int c, size_t n);
 void			ft_bzero(void *s, size_t n);
 void			*ft_memcpy(void *dest, const void *src, size_t n);

@@ -6,13 +6,13 @@
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 15:01:02 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/12/01 00:14:38 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/12/02 15:31:02 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "../includes/ft_printf.h"
 
-void get_str_obsolute(t_flag *info, int *count, int *display)
+void	get_str_obsolute(t_flag *info, int *count, int *display)
 {
 	int i;
 

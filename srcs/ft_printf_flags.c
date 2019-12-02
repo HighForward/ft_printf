@@ -6,19 +6,21 @@
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 13:25:31 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/11/30 19:57:50 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/12/02 18:56:19 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../includes/ft_printf.h"
 
-int check_letter(char c)
+#include "../includes/ft_printf.h"
+
+int		check_letter(char c)
 {
-	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X' || c == '%')
+	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i'
+		|| c == 'u' || c == 'x' || c == 'X' || c == '%')
 		return (1);
 	return (0);
 }
 
-int get_flag_value(char *s, int *i)
+int		get_flag_value(char *s, int *i)
 {
 	int nb;
 
@@ -37,17 +39,40 @@ int get_flag_value(char *s, int *i)
 	return (0);
 }
 
-int get_flag(char c)
+int		get_flag(char c)
 {
 	if (c == '.' || c == '-' || c == '0')
 		return (1);
 	return (0);
 }
 
-int	check_arg(char *s, t_flag *info, va_list va)
+int		check_arg_next(char *s, t_flag *info, va_list va, int i, int star)
 {
-	int i;
-	int star;
+	if ((get_flag(s[i])) != 0)
+		info->flag_2 = s[i++];
+	if (s[i] == '*')
+	{
+		info->flag_value_2 = va_arg(va, int);
+		i++;
+	}
+	else
+		info->flag_value_2 = get_flag_value(s, &i);
+	if ((check_letter(s[i])) != 0)
+		info->letter = s[i++];
+	if (star == 1 && info->flag != '.' &&
+		info->letter != '%' && info->flag_value < 0)
+	{
+		info->flag_value = -info->flag_value;
+		info->flag = '-';
+	}
+	return (i);
+}
+
+int		check_arg(char *s, t_flag *info, va_list va)
+{
+	int		i;
+	int		star;
+
 	star = 0;
 	i = 0;
 	if ((get_flag(s[i])) == 1)
@@ -64,21 +89,5 @@ int	check_arg(char *s, t_flag *info, va_list va)
 	}
 	else
 		info->flag_value = get_flag_value(s, &i);
-	if ((get_flag(s[i])) != 0)
-		info->flag_2 = s[i++];
-	if (s[i] == '*')
-	{
-		info->flag_value_2 = va_arg(va, int);
-		i++;
-	}
-	else
-		info->flag_value_2 = get_flag_value(s, &i);
-	if ((check_letter(s[i])) != 0)
-		info->letter = s[i++];
-	if (star == 1 && info->flag != '.' && info->letter != '%' && info->flag_value < 0)
-	{
-		info->flag_value = -info->flag_value;
-		info->flag = '-';
-	}
-	return (i);
+	return (check_arg_next(s, info, va, i, star));
 }

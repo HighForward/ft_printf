@@ -6,25 +6,22 @@
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 06:47:55 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/12/01 03:03:51 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/12/02 18:31:41 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "../includes/ft_printf.h"
 
 char	*get_value_flag_p(char *str, int flag)
 {
-	int i;
-	int size;
-	char *template;
-	char *dest;
+	int		i;
+	int		size;
+	char	*template;
+	char	*dest;
 
 	i = 0;
 	size = 0;
-	if (flag == 1)
-		template = "0x7ffe";
-	else
-		template = "0x10";
+	template = "0x";
 	if (!(dest = malloc(sizeof(char) * 8 + ft_strlen(template) + 1)))
 		return (NULL);
 	while (template[i])
@@ -32,9 +29,9 @@ char	*get_value_flag_p(char *str, int flag)
 		dest[i] = template[i];
 		i++;
 	}
-	while ((ft_strlen(str) + size) < 7)
+	while ((ft_strlen(str) + size) < 16 && flag == 1)
 	{
-		dest[i] = '0';
+		dest[i] = 'f';
 		i++;
 		size++;
 	}
@@ -75,7 +72,6 @@ char	*get_hexa_negative(char *str, t_flag *info)
 	}
 	free(str);
 	dest[size] = '\0';
-
 	return (dest);
 }
 
@@ -86,11 +82,11 @@ int		ft_abs(int nb)
 	return (nb);
 }
 
-char	*pointer_vide(t_flag *info)
+char	*pointer_vide(void)
 {
-	char *template;
-	char *str;
-	int i;
+	char	*template;
+	char	*str;
+	int		i;
 
 	template = "0x0";
 	i = 0;
@@ -105,19 +101,17 @@ char	*pointer_vide(t_flag *info)
 	return (str);
 }
 
-char	*ft_itoa_base(int value, int base, t_flag *info)
+char	*ft_itoa_base(long int value, long int base, t_flag *info)
 {
-	char	*str;
-	int		size;
-	char	*tab;
-	int		flag;
-	int		tmp;
-	int 	a;
+	char				*str;
+	int					size;
+	char				*tab;
+	int					flag;
+	unsigned long int	tmp;
+	unsigned long int	a;
 
 	if (value == 0 && info->letter == 'p')
-	{
-		return (pointer_vide(info));
-	}
+		return (pointer_vide());
 	size = 1;
 	tab = info->letter == 'X' ? "0123456789ABCDEF" : "0123456789abcdef";
 	flag = value < 0 ? 1 : 0;

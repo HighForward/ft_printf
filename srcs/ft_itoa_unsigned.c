@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "../includes/ft_printf.h"
 
 static int	ft_itoamalloc(unsigned int nb)
 {

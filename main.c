@@ -4,16 +4,14 @@
 
 int main(void)
 {
-	int i;
-	int size;
 	int a, b;
 
-	char *xd;
+	int *d;
+	d = (void*)"YO LEKIPE";
 
-	xd = "FJDHHJFDHJF";
-	a = ft_printf("ccc%%%p?ccc", &xd);
+	a = ft_printf("%5.15s\\", "YO L'EKIPE");
 	printf("\n");
-	b = printf("ccc%%%p?ccc", &xd);
+	b = printf("%5.15s\\", "YO L'EKIPE");
 	if (a != b)
 		printf("\ntu \033[1;31m[KO]\033[0;0m mon gars\nfake = %d\nreal = %d\n", a, b);
 	else

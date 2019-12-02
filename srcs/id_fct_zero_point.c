@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf.h"
+#include "../includes/ft_printf.h"
 
 int		prvt_zero_point_1(t_flag *info, int i, int count, int display)
 {
@@ -25,13 +25,15 @@ int		prvt_zero_point_1(t_flag *info, int i, int count, int display)
 
 int		prvt_zero_point_2(t_flag *info, int i, int count, int display)
 {
-	i = info->flag_value - ((ft_strlen(info->str) >= info->flag_value_2) ? ft_strlen(info->str) : info->flag_value_2);
+	i = info->flag_value - ((ft_strlen(info->str) >= info->flag_value_2) ?
+			ft_strlen(info->str) : info->flag_value_2);
 	put_space(i - count, &display);
 	if (count == 1)
 		ft_putchar('-');
 	i = info->flag_value_2 - ft_strlen(info->str);
 	put_zero(i, &display);
-	info->str[0] == '0' && info->flag_value_2 == 0 ? put_space(1, &display) : putstr_count(info->str, &display);
+	info->str[0] == '0' && info->flag_value_2 == 0 ?
+		put_space(1, &display) : putstr_count(info->str, &display);
 	return (display);
 }
 
