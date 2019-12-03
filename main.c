@@ -6,12 +6,12 @@ int main(void)
 {
 	int a, b;
 
-	int *d;
-	d = (void*)"YO LEKIPE";
+	int d;
+	d = -78;
 
-	a = ft_printf("%5.15s\\", "YO L'EKIPE");
+	a = ft_printf("%15.7d\\", d);
 	printf("\n");
-	b = printf("%5.15s\\", "YO L'EKIPE");
+	b = printf("%15.7d\\", d);
 	if (a != b)
 		printf("\ntu \033[1;31m[KO]\033[0;0m mon gars\nfake = %d\nreal = %d\n", a, b);
 	else

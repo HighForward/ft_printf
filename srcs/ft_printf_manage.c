@@ -6,29 +6,31 @@
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 16:37:01 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/12/02 18:27:36 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/12/03 01:38:35 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int		manage_str(t_flag *info)
+int		manage_str(t_flag *info, t_start *start)
 {
+	int count;
+
+	count = 0;
 	if (info->letter == 'd' || info->letter == 'i')
-		return (manage_i_d(info));
+		count = manage_i_d(info);
 	else if (info->letter == 'x' || info->letter == 'X')
-		return (manage_i_d(info));
+		count = manage_i_d(info);
 	else if (info->letter == 'u')
-		return (manage_i_d(info));
+		count = manage_i_d(info);
 	else if (info->letter == 'c')
-		return (manage_c(info));
+		count = manage_c(info);
 	else if (info->letter == 's')
-		return (manage_s(info));
+		count = manage_s(info);
 	else if (info->letter == '%')
-		return (manage_percent(info));
+		count = manage_percent(info);
 	else if (info->letter == 'p')
-		return (manage_p(info));
-	else
-		ft_putstr(info->str);
-	return (1);
+		count = manage_p(info);
+	start->ret += count;
+	return (0);
 }

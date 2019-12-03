@@ -6,7 +6,7 @@
 /*   By: mbrignol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 14:48:24 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/12/02 19:41:46 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/12/03 01:38:35 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ typedef struct	s_start
 	char		*str;
 }				t_start;
 
+typedef struct	s_arg
+{
+	int			i;
+	int			star;
+}				t_arg;
+
 typedef struct	s_flag
 {
 	char		flag;
@@ -38,13 +44,21 @@ typedef struct	s_flag
 	char		*str;
 }				t_flag;
 
+typedef struct	s_hexa
+{
+	unsigned long int	tmp;
+	unsigned long int	a;
+	unsigned int		size;
+	int					flag;
+}				t_hexa;
+
 int				ft_printf(const char *s, ...);
 
 int				check_letter(char c);
 int				get_flag_value(char *s, int *i);
 int				get_flag(char c);
 int				check_arg(char *s, t_flag *info, va_list va);
-int				check_arg_next(char *s, t_flag *info, va_list va, int i, int star);
+int				check_arg_next(char *s, t_flag *info, va_list va, t_arg *arg);
 
 void			get_str_obsolute(t_flag *info, int *count, int *display);
 void			initialize_struct(t_flag *init, int *i);
@@ -61,7 +75,7 @@ int				get_char_arg(va_list va, t_flag *info);
 int				get_int_arg(va_list va, t_flag *info);
 int				get_percent_arg(t_flag *info);
 
-int				manage_str(t_flag *info);
+int				manage_str(t_flag *info, t_start *start);
 
 int				manage_s(t_flag *info);
 int				manage_s_blank(t_flag *info);
@@ -77,7 +91,8 @@ int				manage_c(t_flag *info);
 int				manage_i_d(t_flag *info);
 
 int				manage_i_d_tiret(t_flag *info);
-int				manage_i_d_tiret_next(t_flag *info, int i, int count, int display);
+int				manage_i_d_tiret_next(t_flag *info, int i, int count,
+		int display);
 int				prvt_tiret_1(t_flag *info, int i, int display);
 int				prvt_tiret_2(t_flag *info, int i, int count, int display);
 int				prvt_tiret_3(t_flag *info, int i, int count, int display);
@@ -109,5 +124,12 @@ char			*ft_itoa_unsigned(unsigned int n);
 char			*get_hexa_negative(char *str, t_flag *info);
 char			*get_value_flag_p(char *str, int flag);
 char			*pointer_vide(void);
+
+int				ft_strlen(const char *str);
+void			ft_putchar(char c);
+char			*ft_strnew(int size);
+void			ft_putstr(char *str);
+char			*ft_itoa(int n);
+char			*ft_strncat(char *dest, char *src, unsigned int nb);
 
 #endif

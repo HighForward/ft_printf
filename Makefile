@@ -4,6 +4,7 @@ SRCSC		=   libft/ft_putchar.c\
 				libft/ft_strnew.c\
                 libft/ft_putstr.c\
 				libft/ft_strlen.c\
+				libft/ft_strncat.c\
 				srcs/ft_printf_args.c\
 				srcs/ft_printf_flags.c\
 				srcs/ft_printf_struct.c\
@@ -31,7 +32,7 @@ RM			= rm -f
 CFLAGS		= -Wall -Wextra -Werror
 
 .c.o: ${OBJS}
-	@${CC} -c $< -o ${<:.c=.o}
+	@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 $(NAME):	${OBJS}
 			@echo "\033[1;32m"
@@ -52,15 +53,5 @@ fclean:		clean
 			@${RM} ${NAME}
 
 re:			fclean all
-
-test-a:		all
-			@${CC} ${NAME} ../testers/main.c -o printf
-			@make clean
-			@./printf a
-
-test:		all
-			${CC} ${NAME} ${LIBFT} ../testers/main.c -o printf
-			@make clean
-			@./printf
 
 .PHONY:		all clean fclean re

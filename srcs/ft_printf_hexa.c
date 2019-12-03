@@ -6,7 +6,7 @@
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 06:47:55 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/12/02 18:31:41 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/12/02 22:25:10 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,8 @@ char	*get_value_flag_p(char *str, int flag)
 	template = "0x";
 	if (!(dest = malloc(sizeof(char) * 8 + ft_strlen(template) + 1)))
 		return (NULL);
-	while (template[i])
-	{
-		dest[i] = template[i];
-		i++;
-	}
+	dest = ft_strncat(dest, template, ft_strlen(template));
+	i = ft_strlen(template);
 	while ((ft_strlen(str) + size) < 16 && flag == 1)
 	{
 		dest[i] = 'f';
@@ -36,22 +33,16 @@ char	*get_value_flag_p(char *str, int flag)
 		size++;
 	}
 	size = 0;
-	while (str[size])
-	{
-		dest[i] = str[size];
-		i++;
-		size++;
-	}
-	dest[i] = '\0';
+	dest = ft_strncat(dest, str, ft_strlen(str));
 	free(str);
 	return (dest);
 }
 
 char	*get_hexa_negative(char *str, t_flag *info)
 {
-	int size;
-	int x;
-	char *dest;
+	int		size;
+	int		x;
+	char	*dest;
 
 	x = 0;
 	size = 0;
@@ -103,31 +94,29 @@ char	*pointer_vide(void)
 
 char	*ft_itoa_base(long int value, long int base, t_flag *info)
 {
-	char				*str;
-	int					size;
-	char				*tab;
-	int					flag;
-	unsigned long int	tmp;
-	unsigned long int	a;
+	char		*str;
+	char		*tab;
+	t_hexa		hexa;
 
 	if (value == 0 && info->letter == 'p')
 		return (pointer_vide());
-	size = 1;
+	hexa.size = 1;
 	tab = info->letter == 'X' ? "0123456789ABCDEF" : "0123456789abcdef";
-	flag = value < 0 ? 1 : 0;
-	a = (value < 0) ? -(value + 1) : value;
-	tmp = a;
-	while (tmp /= base)
-		size++;
-	str = (char *)malloc(sizeof(char) * size + 1);
-	str[size] = '\0';
-	while (size)
+	hexa.flag = value < 0 ? 1 : 0;
+	hexa.a = (value < 0) ? -(value + 1) : value;
+	hexa.tmp = hexa.a;
+	while (hexa.tmp /= base)
+		hexa.size++;
+	str = (char *)malloc(sizeof(char) * hexa.size + 1);
+	str[hexa.size] = '\0';
+	while (hexa.size)
 	{
-		str[size - 1] = tab[(flag == 1) ? (15 - a % 16) : (a % 16)];
-		size--;
-		a /= base;
+		str[hexa.size - 1] = tab[(hexa.flag == 1) ?
+			(15 - hexa.a % 16) : (hexa.a % 16)];
+		hexa.size--;
+		hexa.a /= base;
 	}
 	if (info->letter == 'p')
-		return (get_value_flag_p(str, flag));
-	return (flag == 1 ? get_hexa_negative(str, info) : str);
+		return (get_value_flag_p(str, hexa.flag));
+	return (hexa.flag == 1 ? get_hexa_negative(str, info) : str);
 }

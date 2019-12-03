@@ -6,7 +6,7 @@
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 15:01:02 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/12/02 15:31:02 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/12/03 00:57:04 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,29 @@
 
 void	get_str_obsolute(t_flag *info, int *count, int *display)
 {
-	int i;
+	int		i;
+	int		size;
+	char	*dest;
 
+	dest = NULL;
+	size = 0;
 	i = 0;
 	if (info->str[i] == '-')
 	{
 		(*count)++;
 		(*display)++;
 		i++;
+		while (info->str[size + i])
+			size++;
+		dest = ft_strnew(size);
+		while (size)
+		{
+			dest[size - 1] = info->str[size];
+			size--;
+		}
 	}
-	info->str = &info->str[i];
+	free(info->str);
+	info->str = dest;
 }
 
 void	putstr_count_size(char *s, int *display, int size)

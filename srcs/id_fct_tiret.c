@@ -6,7 +6,7 @@
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 20:10:01 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/12/01 05:17:32 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/12/02 21:53:53 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ int		prvt_tiret_1(t_flag *info, int i, int display)
 
 int		prvt_tiret_2(t_flag *info, int i, int count, int display)
 {
+	int temp;
+
+	temp = 0;
 	i = info->flag_value_2 - ((ft_strlen(info->str) >= info->flag_value_2) ?
 			info->flag_value_2 : ft_strlen(info->str));
 	put_zero(i, &display);
@@ -46,7 +49,12 @@ int		prvt_tiret_2(t_flag *info, int i, int count, int display)
 	else
 		info->str[0] != '0' ?
 			putstr_count(info->str, &display) : put_zero(1, &display);
-	i = info->flag_value <= ft_strlen(info->str) ? 0 : info->flag_value - (info->flag_value_2 < ft_strlen(info->str) ? ft_strlen(info->str) : info->flag_value_2) - count;
+	if (info->flag_value_2 < ft_strlen(info->str))
+		temp = ft_strlen(info->str);
+	else
+		temp = info->flag_value_2;
+	i = info->flag_value <= ft_strlen(info->str) ?
+			0 : info->flag_value - temp - count;
 	put_space(i, &display);
 	return (display);
 }

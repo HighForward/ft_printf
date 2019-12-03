@@ -6,7 +6,7 @@
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 13:25:31 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/12/02 18:56:19 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/12/02 20:15:01 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,48 +46,47 @@ int		get_flag(char c)
 	return (0);
 }
 
-int		check_arg_next(char *s, t_flag *info, va_list va, int i, int star)
+int		check_arg_next(char *s, t_flag *info, va_list va, t_arg *arg)
 {
-	if ((get_flag(s[i])) != 0)
-		info->flag_2 = s[i++];
-	if (s[i] == '*')
+	if ((get_flag(s[arg->i])) != 0)
+		info->flag_2 = s[arg->i++];
+	if (s[arg->i] == '*')
 	{
 		info->flag_value_2 = va_arg(va, int);
-		i++;
+		arg->i++;
 	}
 	else
-		info->flag_value_2 = get_flag_value(s, &i);
-	if ((check_letter(s[i])) != 0)
-		info->letter = s[i++];
-	if (star == 1 && info->flag != '.' &&
+		info->flag_value_2 = get_flag_value(s, &arg->i);
+	if ((check_letter(s[arg->i])) != 0)
+		info->letter = s[arg->i++];
+	if (arg->star == 1 && info->flag != '.' &&
 		info->letter != '%' && info->flag_value < 0)
 	{
 		info->flag_value = -info->flag_value;
 		info->flag = '-';
 	}
-	return (i);
+	return (arg->i);
 }
 
 int		check_arg(char *s, t_flag *info, va_list va)
 {
-	int		i;
-	int		star;
+	t_arg arg;
 
-	star = 0;
-	i = 0;
-	if ((get_flag(s[i])) == 1)
+	arg.star = 0;
+	arg.i = 0;
+	if ((get_flag(s[arg.i])) == 1)
 	{
-		info->flag = s[i++];
-		while (s[i] == '-')
-			i++;
+		info->flag = s[arg.i++];
+		while (s[arg.i] == '-')
+			arg.i++;
 	}
-	if (s[i] == '*')
+	if (s[arg.i] == '*')
 	{
 		info->flag_value = va_arg(va, int);
-		i++;
-		star = 1;
+		arg.i++;
+		arg.star = 1;
 	}
 	else
-		info->flag_value = get_flag_value(s, &i);
-	return (check_arg_next(s, info, va, i, star));
+		info->flag_value = get_flag_value(s, &arg.i);
+	return (check_arg_next(s, info, va, &arg));
 }
