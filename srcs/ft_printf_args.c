@@ -6,7 +6,7 @@
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 15:32:12 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/12/02 18:43:38 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/12/21 21:44:39 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,14 @@ int		get_int_arg(va_list va, t_flag *info)
 		nbr = ft_itoa(va_arg(va, int));
 	else if (info->letter == 'u')
 		nbr = ft_itoa_unsigned(va_arg(va, unsigned int));
-	else if (info->letter == 'X' || info->letter == 'x' || info->letter == 'p')
+	else if (info->letter == 'X' || info->letter == 'x')
+	{
+		nbr = ft_itoa_base((va_arg(va, unsigned int)), 16, info);
+	}
+	else if (info->letter == 'p')
+	{
 		nbr = ft_itoa_base(va_arg(va, long int), 16, info);
+	}
 	info->str = nbr;
 	return (1);
 }

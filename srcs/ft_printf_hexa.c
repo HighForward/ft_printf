@@ -6,7 +6,7 @@
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 06:47:55 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/12/02 22:25:10 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/12/21 21:06:37 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*get_hexa_negative(char *str, t_flag *info)
 	return (dest);
 }
 
-int		ft_abs(int nb)
+int		ft_abs(long int nb)
 {
 	if (nb < 0)
 		nb = -nb;
@@ -109,10 +109,10 @@ char	*ft_itoa_base(long int value, long int base, t_flag *info)
 		hexa.size++;
 	str = (char *)malloc(sizeof(char) * hexa.size + 1);
 	str[hexa.size] = '\0';
-	while (hexa.size)
+	while (hexa.size > 0)
 	{
 		str[hexa.size - 1] = tab[(hexa.flag == 1) ?
-			(15 - hexa.a % 16) : (hexa.a % 16)];
+				((15 - hexa.a) % 16) : (hexa.a % 16)];
 		hexa.size--;
 		hexa.a /= base;
 	}

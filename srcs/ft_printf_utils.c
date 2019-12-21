@@ -6,7 +6,7 @@
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 21:48:49 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/12/02 19:44:00 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/12/21 22:44:08 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,26 @@ int		id_tiret_help_2(t_flag *info, int display)
 {
 	ft_putstr(info->str);
 	return (display += ft_strlen(info->str));
+}
+
+int		manage_tiret_point_help(t_flag *info, int display, int i)
+{
+	if (info->flag_value_2 < 0)
+	{
+		if (info->flag_value > ft_strlen(info->str))
+		{
+			i = info->flag_value - ft_strlen(info->str);
+			putstr_count(info->str, &display);
+			put_space(i, &display);
+			return (display);
+		}
+		putstr_count(info->str, &display);
+		return (display);
+	}
+	i = info->flag_value_2 < ft_strlen(info->str) ?
+		info->flag_value_2 : ft_strlen(info->str);
+	putstr_count_size(info->str, &display, i);
+	i = info->flag_value - i;
+	put_space(i, &display);
+	return (display);
 }

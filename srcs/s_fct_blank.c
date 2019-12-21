@@ -6,7 +6,7 @@
 /*   By: mbrignol <mbrignol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 19:00:04 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/12/02 19:20:51 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/12/13 05:37:06 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,14 @@ int		manage_s_prvt_2(t_flag *info, int i, int display)
 
 int		manage_s_prvt_3(t_flag *info, int i, int display)
 {
+	if (info->flag_value_2 < 0)
+	{
+		i = info->flag_value > ft_strlen(info->str) ?
+				info->flag_value - ft_strlen(info->str) : 0;
+		put_space(i, &display);
+		putstr_count(info->str, &display);
+		return (display);
+	}
 	i = info->flag_value_2 > ft_strlen(info->str) ? info->flag_value
 			- ft_strlen(info->str) : info->flag_value
 				- info->flag_value_2;

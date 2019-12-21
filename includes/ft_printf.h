@@ -6,14 +6,13 @@
 /*   By: mbrignol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 14:48:24 by mbrignol          #+#    #+#             */
-/*   Updated: 2019/12/03 01:38:35 by mbrignol         ###   ########.fr       */
+/*   Updated: 2019/12/21 22:41:56 by mbrignol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "libft.h"
 # include <stdlib.h>
 # include <stdarg.h>
 # include <unistd.h>
@@ -46,10 +45,10 @@ typedef struct	s_flag
 
 typedef struct	s_hexa
 {
-	unsigned long int	tmp;
-	unsigned long int	a;
-	unsigned int		size;
-	int					flag;
+	long int	tmp;
+	long int	a;
+	int			size;
+	int			flag;
 }				t_hexa;
 
 int				ft_printf(const char *s, ...);
@@ -79,11 +78,13 @@ int				manage_str(t_flag *info, t_start *start);
 
 int				manage_s(t_flag *info);
 int				manage_s_blank(t_flag *info);
+int				manage_s_blank_help(t_flag *info, int display, int i);
 int				manage_s_prvt_1(t_flag *info, int i, int display);
 int				manage_s_prvt_2(t_flag *info, int i, int display);
 int				manage_s_prvt_3(t_flag *info, int i, int display);
 int				manage_s_prvt_4(t_flag *info, int display);
 int				manage_s_tiret(t_flag *info);
+int				manage_tiret_point_help(t_flag *info, int display, int i);
 int				manage_s_point(t_flag *info);
 
 int				manage_c(t_flag *info);
@@ -118,7 +119,7 @@ int				manage_percent_zero(t_flag *info);
 int				manage_p(t_flag *info);
 int				manage_p_tiret(t_flag *info);
 
-int				ft_abs(int nb);
+int				ft_abs(long int nb);
 char			*ft_itoa_base(long int value, long int base, t_flag *info);
 char			*ft_itoa_unsigned(unsigned int n);
 char			*get_hexa_negative(char *str, t_flag *info);

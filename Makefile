@@ -35,21 +35,14 @@ CFLAGS		= -Wall -Wextra -Werror
 	@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 $(NAME):	${OBJS}
-			@echo "\033[1;32m"
-			@echo "┌─┐┬ ┬┌─┐┌─┐┌─┐┌─┐┌─┐"
-			@echo "└─┐│ ││  │  ├┤ └─┐└─┐"
-			@echo "└─┘└─┘└─┘└─┘└─┘└─┘└─┘"
-			@echo "libftprintf.a generated successfully.\033[0;0m"
 			@${AR} ${NAME} ${OBJS} ${SRCSH}
 
 all:		${NAME}
 
 clean:
-			@echo "Deleting .o files.."
 			@${RM} ${OBJS}
 
 fclean:		clean
-			@echo "Deleting binary files.."
 			@${RM} ${NAME}
 
 re:			fclean all
